@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Verificación de ubicación</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card">
+      <header>
+        <span class="pill">One UI</span>
+        <span class="pill">Permiso de ubicación</span>
+        <span class="pill">Firestore</span>
+      </header>
+
+      <h1>Antes de continuar</h1>
+      <p class="muted">
+        Necesitamos tu ubicación <strong>una sola vez</strong> para verificar que te encuentras en una de las regiones seleccionadas.
+        No compartiremos estos datos con terceros; permanecerán almacenados por un lapso de <strong>30 días</strong>.
+        Te recomendamos desactivar VPNs (si tienes) y activar la ubicación del dispositivo.
+      </p>
+
+      <!-- Formulario -->
+      <div id="form-view">
+        <div class="row">
+          <div style="flex:1 1 220px">
+            <label for="nombre">Ingresa tu nombre</label>
+            <input id="nombre" type="text" placeholder="Nombre" />
+          </div>
+          <div style="flex:1 1 220px">
+            <label for="apellido">Apellido</label>
+            <input id="apellido" type="text" placeholder="Apellido" />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row">
+          <button id="btn-continuar" class="btn btn-primary">Permitir y continuar</button>
+          <button id="btn-cancel" class="btn btn-ghost">Cancelar</button>
+        </div>
+
+        <div id="status" class="status"></div>
+        <p id="vpnNote" class="hint hidden">⚠️ Detectamos una posible VPN o proxy. Si tienes problemas, desactívala.</p>
+        <p class="small mono" id="debug" style="opacity:.7"></p>
+      </div>
+
+      <!-- Contenido permitido -->
+      <div id="content-view" class="hidden">
+        <p class="status ok">✅ Verificación completada: mostramos el contenido.</p>
+        <div class="img-box">
+          <img id="final-image" src="" alt="Contenido" />
+        </div>
+        <div class="divider"></div>
+        <p class="hint">Puedes abrir la ubicación en Google Maps:</p>
+        <div class="row">
+          <a id="mapsLink" class="btn btn-ghost" target="_blank" rel="noopener">Abrir en Maps</a>
+        </div>
+      </div>
+
+      <!-- Contenido bloqueado -->
+      <div id="blocked-view" class="hidden">
+        <p class="status err">🚫 Lo sentimos, este contenido no está disponible en tu región.</p>
+        <p class="hint">Si estás usando una VPN o proxy, desactívala e inténtalo de nuevo.</p>
+      </div>
+    </main>
+  </div>
+  
+  <script src="main.js"></script>
+</body>
+</html>
